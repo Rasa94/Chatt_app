@@ -1,0 +1,202 @@
+@import 'config';
+
+*{
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%; 
+
+}
+
+body {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    padding-bottom: 80px; 
+    box-shadow: none;
+    background-color: $background;
+    color: set-text-color($background); 
+    overflow: hidden;
+
+}
+
+#chatContainer {
+    background-color: rgba($color: #84B0AE, $alpha: 0.6);
+    width: 45%;
+    margin: 0 auto;
+    border-radius: 20px;
+}
+
+
+    /* Chat room buttons */
+
+#chatButtonWrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+
+    button {
+        margin: 2px;
+        width: 155px;
+        height: 2rem;
+        border: none;
+        color: white;
+    }
+    
+    #general {
+        background-color: #634F5F;
+        
+    }
+    
+    #js {
+        background-color: #A46877;
+    }
+    
+    #test {
+        background-color: #E08976;
+    }
+    
+    #homework {
+        background-color: #C95851;
+    }
+}
+
+
+
+
+    /* Chat window */
+
+#chatRoom {
+    padding: 5px; 
+    border-top-left-radius: 25px;
+    overflow-y: scroll; 
+    width: 100%;
+    height: 500px;
+    border-bottom: #466362 solid 2px;
+
+    ul {
+        display:block;
+        margin: 0;
+        padding: 0; 
+    }
+
+    li {
+        word-wrap: break-word;
+        list-style: none;
+        background-color: rgba($color: #634F5F, $alpha: 1.0);
+        width: 55%;
+        height: 100%;
+        overflow: visible;
+    } 
+}
+
+.liMsg {
+    margin-top: 10px;
+    position: relative;
+
+    img {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+    }
+}
+
+.me{
+    margin-left: auto;
+    background-color: rgba($color: #C95851, $alpha: 1.0) !important;
+    text-align: right;
+    padding: 10px;
+    border-radius: 20px 0px 20px 20px;
+    
+    img {
+        left: 0;
+        top: 0;
+        margin: 10px;
+    }
+}
+
+.not-me {
+    margin-right: auto;
+    text-align: left;
+    padding: 5px;
+    border-radius: 0px 20px 20px 20px;
+
+    img {
+        top: 0;
+        right: 0;
+        margin: 5px;
+    }
+}
+
+.hide-not-me {
+    display: none;
+}
+
+
+
+    /* Input */
+
+form {
+    height: 40px;
+    width: 100%;
+    margin: 0 auto;
+
+    .btnForm {
+        position: relative;
+        margin: 2px 2px 2px 2px;
+        width: 155px;
+        height: 2rem;
+        border: none;
+        background-color: #E08976;
+    }
+
+    .input {
+        width: 50% ;
+        height: 32px;
+    }
+
+    #backgroundColorPick {
+        height: 24px;
+        //margin-right: 13px;
+    }
+
+
+}
+
+    /* Notification */
+
+.notificationBlock {
+    display: block; 
+    margin: 0 auto;
+    //width: 100%;
+    padding: 3px;
+    border-radius: 0px 0px 20px 20px
+}
+
+    /* Footer */
+
+#footer {
+    text-align: center !important; 
+    position: fixed;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    margin: 0 !important;
+    padding-bottom: 0;
+    background-color: black;
+    color: white !important;
+}
+
+.icons {
+    margin-top: 5px;
+    height: 20px;
+    width: 20px;
+}
+
+
+
+
+@import 'mobile';

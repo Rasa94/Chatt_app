@@ -1,0 +1,52 @@
+
+
+@media only screen and (max-width: 420px) {
+    body {
+        overflow-y: scroll;
+        height: 100%
+    }
+    header {
+        h1 {
+            display: none;
+        }
+
+        nav {
+            h2 {
+                display: none; 
+            }
+        }
+    }
+    form {
+        width: 100%; 
+        height: 37px;
+
+        .btnForm {
+            width: 115px;
+        }
+
+        input {
+            height: 30px;
+
+
+        }
+        #backgroundColorPick {
+            height: 24px;
+            margin-right: 13px;
+        }
+
+    }
+    #chatRoom {
+        height: 80%;
+
+    }
+    #ulMessages{
+        overflow-y: scroll;
+    }
+    #chatContainer {
+        height: 100%;
+        width: 100%;
+    }
+    #chatRoom {
+        width: 100%;
+    }  
+}  

@@ -16,13 +16,13 @@ let messageList = document.getElementById('ulMessages');
     // Chat room buttons
 let navRooms = document.querySelectorAll('button');
 let rooms = document.querySelector('nav');
+    // Background color settings
+let background = document.getElementById('backgroundColorPick');
+let updateBackgroundColor = document.getElementById('updateBackgroundColor');
 
+let colorBox = document.getElementById('color')
 let notification = document.getElementById('notification');
 
-let settingsBtn = document.getElementById('settingsBtn');
-let settings = document.querySelector('.settings');
-let backDrop = document.querySelector('.backdropNone');
-let closeBtn = document.getElementById('close');
 
 
 // Checking for the username in the local storage
@@ -68,33 +68,37 @@ chatroom.getChats(data => {
 
 // Update username 
 
-usernameForm.addEventListener('submit', event => { 
+usernameForm.addEventListener('click', event => {  
     event.preventDefault();
     let newUsername = usernameInput.value;
     chatroom.updateUsername(newUsername);  
-
+    
     room();
     // When the username is updated a notification pops up briefly to inform the user
     notification.innerText = `Your username has been changed to ${newUsername}`;
+    notification.classList.toggle('notificationBlock');
+    colorBox.style.borderRadius = '0px 0px 0px 0px'
+    
+    setTimeout(()=>{
+        notification.style.display = 'none';
+        colorBox.style.borderRadius = '0px 0px 20px 20px'
+    }, 3000)
 
-    let clear = () => {
-        notification.classList.toggle('notificationNone')
-    }
-    setTimeout(() => { 
-        notification.classList.toggle('notificationBlock');
-    }, 3000)  
-
+    usernameInput.value = ''; 
 })   
 
 // Submit a new message, add it to the database and render it
 
-messageForm.addEventListener('submit', event => {
+messageForm.addEventListener('click', event => {
     event.preventDefault();
+    console.log('aaa')
     let newMsg = messageInput.value;
     chatroom.addChat(newMsg)
                 .then(() => messageForm.reset())
                 .then(console.log(newMsg)) 
                 .catch(error => console.log(error)) 
+    messageInput.value = ''; 
+    messageList.scrollTop = 9999999;
 });   
   
 // Change the chat room
@@ -114,22 +118,19 @@ rooms.addEventListener('click', e => {
     }
 }); 
 
-
-let background = document.getElementById('backgroundColorPick');
-let updateBackgroundColor = document.getElementById('updateBackgroundColor');
-let filter = document.getElementById('filterBtn');
-let start = document.getElementById('start');
-let end = document.getElementById('end');
-
 /*
+let filter = document.getElementById('filterBtn');
+
 filter.addEventListener('click', () => {
-    let s = localStorage.setItem('start', start.value);
-    let e = localStorage.setItem('end', end.value);
-    chatroom.getFilteredChats(start, end, (data) => {
-        ui.templateLi(data)
-    })
-    console.log(s);
-    console.log(e);
+    let start = document.getElementById('start');
+    let end = document.getElementById('end');   
+    //let s = localStorage.setItem('start', start.value);
+    //let e = localStorage.setItem('end', end.value);
+    //chatroom.getFilteredChats(start.value, end.value, (data) => {
+    //    ui.templateLi(data)
+    //})
+    console.log(start.value);
+    console.log(end.value);
 })
 */
 
@@ -137,3 +138,24 @@ updateBackgroundColor.addEventListener('click', () => {
     let back = document.getElementsByTagName("BODY")[0]
     back.style.backgroundColor = background.value;
 })
+
+
+messageList.addEventListener('click', (e) => {
+    //e.preventDefault();
+    if(e.target.parentElement.classList.contains('not-me')) {
+        if(e.target.tagName === 'IMG') {
+            e.target.parentElement.style.display = 'none'
+        }  
+    } else {
+        if(e.target.tagName === 'IMG') { 
+            let msg = e.target.nextSibling.nextSibling.nextSibling.nextSibling.innerText;
+            console.log(msg); 
+            chatroom.deleteChats(msg); 
+            
+            setTimeout(()=>{
+                window.location.reload(true);
+            }, 1000)
+        }  
+    }
+    
+})  

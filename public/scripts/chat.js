@@ -3,7 +3,9 @@ export class Chatroom {
         this.room = r;
         this.username = u;
         this.chats = db.collection('chats');
+        this.id;
         this.unsub;
+        this.del;
     }
     set room(r){
         this._room = r;
@@ -42,7 +44,8 @@ export class Chatroom {
             message: msg,
             username: this.username,
             room: this.room,
-            created_at: firebase.firestore.Timestamp.fromDate(date)
+            created_at: firebase.firestore.Timestamp.fromDate(date),
+            id: randomUuid
         }
 
         let response = await this.chats.doc(randomUuid).set(chatDoc);    
@@ -63,7 +66,25 @@ export class Chatroom {
                         });
                     });
     }
-/*
+
+    deleteChats(msg) {
+        this.chats.onSnapshot(el => {
+            el.forEach(doc => {
+                if(doc.data().message == msg) {
+                    console.log(doc.id);
+                    this.chats
+                        .doc(doc.id)
+                        .delete()
+                        .then(()=> {
+                            console.log('deleted')
+                        })
+                }
+            })
+        })
+
+        
+    }
+
     getFilteredChats(callback) {
         this.unsub = this.chats
                     .where('created_at', '>', start)
@@ -77,7 +98,7 @@ export class Chatroom {
                         });
                     });
     }
-*/
+
         // This method updates the room in the local storage, not in the database
 
     updateUsername(newUsername) {
