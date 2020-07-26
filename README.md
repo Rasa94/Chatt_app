@@ -3,7 +3,7 @@
 
 A chat application which stores it's messages in a Firebase database.
 
-![screenshot](chatScreenshot.png)
+![screenshot](public/chatScreenshot.png)
 
 ## Functionalities:
 - Changeable background color
