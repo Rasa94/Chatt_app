@@ -19,7 +19,6 @@ let rooms = document.querySelector('nav');
     // Background color settings
 let background = document.getElementById('backgroundColorPick');
 let updateBackgroundColor = document.getElementById('updateBackgroundColor');
-
 let colorBox = document.getElementById('color')
 let notification = document.getElementById('notification');
 
@@ -105,10 +104,8 @@ messageForm.addEventListener('click', event => {
  
 rooms.addEventListener('click', e => {
     if(e.target.tagName == "BUTTON"){
-        //1. Izbrisati sve poruke sa ekrana kada menjamo sobu
         ui.clear();
-        //2. Pozvati promenu sobe
-        selectedButton(e.target); //Selektovanje aktivnog dugmeta (taba) u meniju
+        selectedButton(e.target);
         let roomTmp = e.target.getAttribute("id");
         chatroom.updateRoom(roomTmp);
         localStorage.setItem('room',roomTmp);
@@ -117,22 +114,6 @@ rooms.addEventListener('click', e => {
         });   
     }
 }); 
-
-/*
-let filter = document.getElementById('filterBtn');
-
-filter.addEventListener('click', () => {
-    let start = document.getElementById('start');
-    let end = document.getElementById('end');   
-    //let s = localStorage.setItem('start', start.value);
-    //let e = localStorage.setItem('end', end.value);
-    //chatroom.getFilteredChats(start.value, end.value, (data) => {
-    //    ui.templateLi(data)
-    //})
-    console.log(start.value);
-    console.log(end.value);
-})
-*/
 
 updateBackgroundColor.addEventListener('click', () => {
     let back = document.getElementsByTagName("BODY")[0]
