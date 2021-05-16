@@ -1,5 +1,3 @@
-@import 'config';
-
 *{
     box-sizing: border-box;
 }
@@ -17,8 +15,7 @@ body {
     text-align: center;
     padding-bottom: 80px; 
     box-shadow: none;
-    background-color: $background;
-    color: set-text-color($background); 
+    color: white; 
     overflow: hidden;
 
 }
@@ -29,7 +26,6 @@ body {
     margin: 0 auto;
     border-radius: 20px;
 }
-
 
     /* Chat room buttons */
 
@@ -48,7 +44,6 @@ body {
     
     #general {
         background-color: #634F5F;
-        
     }
     
     #js {
@@ -153,6 +148,10 @@ form {
         background-color: #E08976;
     }
 
+    .colorBtn {
+        width: 73px;
+    }
+
     .input {
         width: 50% ;
         height: 32px;
@@ -160,7 +159,7 @@ form {
 
     #backgroundColorPick {
         height: 24px;
-        //margin-right: 13px;
+        margin-right: 14px;
     }
 
 

@@ -17,11 +17,16 @@ let messageList = document.getElementById('ulMessages');
 let navRooms = document.querySelectorAll('button');
 let rooms = document.querySelector('nav');
     // Background color settings
-let background = document.getElementById('backgroundColorPick');
+let backgroundColor = document.getElementsByTagName("BODY")[0];
+let backgroundPicker = document.getElementById('backgroundColorPick');
 let updateBackgroundColor = document.getElementById('updateBackgroundColor');
+let defaultBackgroundColor = document.getElementById('defaultBackgroundColor');
 let colorBox = document.getElementById('color')
 let notification = document.getElementById('notification');
 
+// User color setting
+
+localStorage.backgroundColor ? backgroundColor.style.backgroundColor = localStorage.backgroundColor : backgroundColor.style.backgroundColor = '#466362';
 
 
 // Checking for the username in the local storage
@@ -81,10 +86,10 @@ usernameForm.addEventListener('click', event => {
     setTimeout(()=>{
         notification.style.display = 'none';
         colorBox.style.borderRadius = '0px 0px 20px 20px'
-    }, 3000)
+    }, 4000)
 
     usernameInput.value = ''; 
-})   
+});   
 
 // Submit a new message, add it to the database and render it
 
@@ -93,7 +98,7 @@ messageForm.addEventListener('click', event => {
     console.log('aaa')
     let newMsg = messageInput.value;
     chatroom.addChat(newMsg)
-                .then(() => messageForm.reset())
+                // .then(() => messageForm.reset())
                 .then(console.log(newMsg)) 
                 .catch(error => console.log(error)) 
     messageInput.value = ''; 
@@ -116,13 +121,18 @@ rooms.addEventListener('click', e => {
 }); 
 
 updateBackgroundColor.addEventListener('click', () => {
-    let back = document.getElementsByTagName("BODY")[0]
-    back.style.backgroundColor = background.value;
-})
+    console.log(backgroundPicker.value);
+    localStorage.setItem('backgroundColor', backgroundPicker.value);
+    backgroundColor.style.backgroundColor = localStorage.backgroundColor;
+});
+
+defaultBackgroundColor.addEventListener('click', () => {
+    backgroundColor.style.backgroundColor = '#466362';
+    localStorage.removeItem('backgroundColor');
+});
 
 
 messageList.addEventListener('click', (e) => {
-    //e.preventDefault();
     if(e.target.parentElement.classList.contains('not-me')) {
         if(e.target.tagName === 'IMG') {
             e.target.parentElement.style.display = 'none'
@@ -130,12 +140,7 @@ messageList.addEventListener('click', (e) => {
     } else {
         if(e.target.tagName === 'IMG') { 
             let msg = e.target.nextSibling.nextSibling.nextSibling.nextSibling.innerText;
-            console.log(msg); 
             chatroom.deleteChats(msg); 
-            
-            setTimeout(()=>{
-                window.location.reload(true);
-            }, 1000)
         }  
     }
     

@@ -71,18 +71,15 @@ export class Chatroom {
         this.chats.onSnapshot(el => {
             el.forEach(doc => {
                 if(doc.data().message == msg) {
-                    console.log(doc.id);
                     this.chats
                         .doc(doc.id)
                         .delete()
                         .then(()=> {
-                            console.log('deleted')
+                            window.location.reload(true)
                         })
                 }
             })
         })
-
-        
     }
 
     getFilteredChats(callback) {

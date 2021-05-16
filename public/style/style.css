@@ -14,8 +14,7 @@ body {
   text-align: center;
   padding-bottom: 80px;
   box-shadow: none;
-  background-color: #466362;
-  color: #fff;
+  color: white;
   overflow: hidden;
 }
 
@@ -128,12 +127,16 @@ form .btnForm {
   border: none;
   background-color: #E08976;
 }
+form .colorBtn {
+  width: 73px;
+}
 form .input {
   width: 50%;
   height: 32px;
 }
 form #backgroundColorPick {
   height: 24px;
+  margin-right: 14px;
 }
 
 /* Notification */
@@ -185,6 +188,9 @@ form #backgroundColorPick {
   }
   form input {
     height: 30px;
+  }
+  form .colorBtn {
+    width: 53px;
   }
   form #backgroundColorPick {
     height: 24px;

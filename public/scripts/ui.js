@@ -54,7 +54,7 @@ export class chatUi {
         htmlLi += 
         `        
             <span class="username">${data.username}:</span>
-            <img src="/icons/bin.png" >
+            <img src="./../icons/bin.png" >
             <br>
             <span class="message">${data.message}</span> 
             <div class="date">${strDate}</div>      
